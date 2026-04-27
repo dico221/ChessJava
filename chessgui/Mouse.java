@@ -9,16 +9,18 @@ public class Mouse extends MouseAdapter{
     public boolean pressed;
 
     public void mousePressed(MouseAdapter e){
-
+        pressed = true;
     }
     public void mouseReleased(MouseEvent e){
-
+        pressed = false;
     }
     public void mouseDragged(MouseEvent e){
-
+        x = e.getX();
+        y = e.getY();
     }
     public void mouseMoved(MouseEvent e){
-
+        x = e.getY();
+        y = e.getX();
     }
 
 }

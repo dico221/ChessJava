@@ -17,11 +17,12 @@ public class GamePanel extends JPanel implements Runnable{
     private final int FPS=60;
     Thread gameThread;
     Board board = new Board();
+    Mouse mouse = new Mouse();
 
     // PIECES
     public static ArrayList<Piece> pieces = new ArrayList<Piece>();
     public static ArrayList<Piece> simPieces = new ArrayList<Piece>();
-
+    Piece activeP; 
 
     // COLOURS
     public static final int WHITE = 0;
@@ -32,6 +33,9 @@ public class GamePanel extends JPanel implements Runnable{
     public GamePanel(){
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         this.setBackground(Color.BLACK);
+        addMouseMotionListener(mouse);
+        addMouseListener(mouse);
+
 
         setPiece();
         copyPieces(pieces, simPieces);
@@ -109,6 +113,24 @@ public class GamePanel extends JPanel implements Runnable{
     };
 
     private void update(){
+        if(mouse.pressed){
+            if(activeP == null){
+                 for(Piece piece: simPieces){
+                    if(piece.color == currentColor && piece.col == mouse.x/Board.SQUARE_SIZE && piece.row == mouse.y/Board.SQUARE_SIZE){
+                        activeP = piece;
+                    }
+                 }
+            }
+            else{
+                simulate();
+            }
+        }
+    }
+
+    private void simulate(){
+        activeP.x = mouse.x;
+        activeP.y = mouse.y;
+
 
     }
     public void paintComponent(Graphics g){
