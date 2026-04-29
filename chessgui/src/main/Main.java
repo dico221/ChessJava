@@ -1,10 +1,12 @@
-package chessgui;
+package main;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
-public class Main {
-   public static void main(String[] args) {
-        JFrame window = new JFrame("Scacchi con la gui in java");
+class Main {
+
+    public static void main() {
+
+        JFrame window = new JFrame("Chess Game");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
 
@@ -14,8 +16,7 @@ public class Main {
 
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-        
-        gp.launchGame();
 
-   } 
+        gp.lauchGame();
+    }
 }
